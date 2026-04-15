@@ -1,0 +1,54 @@
+{% extends "base.html" %}
+{% block content %}
+
+<section>
+  <h2>Podcast Feeds</h2>
+  <form method="post" action="/ui/feeds/add">
+    <div class="row" style="margin-bottom:0.75rem;">
+      <input type="url" name="url" placeholder="https://example.com/feed.rss" required />
+      <button type="submit">Add Feed</button>
+    </div>
+  </form>
+
+  {% if feeds %}
+  <ul class="feed-list">
+    {% for feed in feeds %}
+    <li>
+      <div>
+        <div class="feed-title">{{ feed.title }}</div>
+        <div class="feed-url">{{ feed.url }}</div>
+      </div>
+      <form method="post" action="/ui/feeds/{{ feed.id }}/delete">
+        <button type="submit" class="danger" style="padding:0.3rem 0.7rem;font-size:0.8rem;">Remove</button>
+      </form>
+    </li>
+    {% endfor %}
+  </ul>
+  <div style="margin-top:1rem;">
+    <form method="post" action="/ui/feeds/fetch-all">
+      <button type="submit" class="secondary">Refresh All Feeds</button>
+    </form>
+  </div>
+  {% else %}
+  <p style="color:#888;font-size:0.9rem;margin-top:0.5rem;">No feeds yet. Add one above.</p>
+  {% endif %}
+</section>
+
+<section>
+  <h2>My Interests</h2>
+  <form method="post" action="/ui/interests">
+    <textarea name="interests" placeholder="One interest per line, e.g.&#10;Apple hardware&#10;software design&#10;indie development">{% for i in interests %}{{ i.description }}
+{% endfor %}</textarea>
+    <div style="margin-top:0.75rem;">
+      <button type="submit">Save Interests</button>
+    </div>
+  </form>
+</section>
+
+{% if feeds and interests %}
+<div style="text-align:center;margin-bottom:2rem;">
+  <a href="/ui/recommend" class="btn">Get Recommendations</a>
+</div>
+{% endif %}
+
+{% endblock %}

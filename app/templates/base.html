@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Digest</title>
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, sans-serif; background: #f5f5f5; color: #1a1a1a; line-height: 1.6; }
+    header { background: #1a1a1a; color: #fff; padding: 1rem 2rem; display: flex; align-items: center; gap: 1rem; }
+    header h1 { font-size: 1.4rem; letter-spacing: 0.05em; }
+    header nav a { color: #ccc; text-decoration: none; margin-left: 1.5rem; font-size: 0.9rem; }
+    header nav a:hover { color: #fff; }
+    main { max-width: 900px; margin: 2rem auto; padding: 0 1rem; }
+    section { background: #fff; border-radius: 8px; padding: 1.5rem; margin-bottom: 1.5rem; box-shadow: 0 1px 3px rgba(0,0,0,0.08); }
+    h2 { font-size: 1.1rem; margin-bottom: 1rem; color: #333; }
+    input[type=text], input[type=url], textarea {
+      width: 100%; padding: 0.5rem 0.75rem; border: 1px solid #ddd;
+      border-radius: 4px; font-size: 0.95rem; font-family: inherit;
+    }
+    textarea { resize: vertical; min-height: 80px; }
+    button, .btn {
+      display: inline-block; padding: 0.5rem 1rem; background: #1a1a1a; color: #fff;
+      border: none; border-radius: 4px; cursor: pointer; font-size: 0.9rem; text-decoration: none;
+    }
+    button:hover, .btn:hover { background: #333; }
+    button.secondary { background: #e0e0e0; color: #333; }
+    button.secondary:hover { background: #ccc; }
+    button.danger { background: #c0392b; }
+    button.danger:hover { background: #a93226; }
+    .row { display: flex; gap: 0.75rem; align-items: flex-start; flex-wrap: wrap; }
+    .row input { flex: 1; min-width: 200px; }
+    ul.feed-list { list-style: none; }
+    ul.feed-list li { display: flex; align-items: center; justify-content: space-between;
+      padding: 0.5rem 0; border-bottom: 1px solid #f0f0f0; gap: 1rem; }
+    ul.feed-list li:last-child { border-bottom: none; }
+    .feed-title { font-weight: 500; }
+    .feed-url { font-size: 0.8rem; color: #888; }
+    .error { color: #c0392b; background: #fdecea; border-radius: 4px; padding: 0.75rem 1rem; }
+    .episode-card { border: 1px solid #e8e8e8; border-radius: 6px; padding: 1rem; margin-bottom: 1rem; }
+    .episode-card h3 { font-size: 1rem; margin-bottom: 0.25rem; }
+    .episode-card .meta { font-size: 0.8rem; color: #888; margin-bottom: 0.5rem; }
+    .episode-card .reason { font-size: 0.9rem; color: #555; background: #f9f9f9;
+      border-left: 3px solid #1a1a1a; padding: 0.4rem 0.75rem; margin-top: 0.5rem; border-radius: 0 4px 4px 0; }
+    .episode-card a { color: #1a1a1a; }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>Digest</h1>
+    <nav>
+      <a href="/">Home</a>
+      <a href="/ui/recommend">Recommend</a>
+      <a href="/docs">API</a>
+    </nav>
+  </header>
+  <main>
+    {% block content %}{% endblock %}
+  </main>
+</body>
+</html>
