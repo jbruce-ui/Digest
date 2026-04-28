@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "railway": {
+      "type": "http",
+      "url": "https://delightful-truth-production-65b9.up.railway.app/mcp"
+    }
+  }
+}
